@@ -304,7 +304,7 @@ namespace AutoMerge
             var tfs = context.TeamProjectCollection;
             var versionControl = tfs.GetService<VersionControlServer>();
 
-            var result = new ObservableCollection<MergeInfoViewModel>();
+            var result = new List<MergeInfoViewModel>();
 
             var workspace = _workspace;
 
@@ -388,7 +388,7 @@ namespace AutoMerge
                 }
             }
 
-            return result;
+            return new ObservableCollection<MergeInfoViewModel>(result.Where(x => x.ValidationResult != BranchValidationResult.NoAccess));
         }
 
         private static List<ItemIdentifier> GetMergesRelationships(string sourceTopFolder, VersionControlServer versionControl)
