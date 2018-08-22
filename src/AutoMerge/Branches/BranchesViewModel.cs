@@ -388,7 +388,7 @@ namespace AutoMerge
                 }
             }
 
-            return new ObservableCollection<MergeInfoViewModel>(result.Where(x => x.ValidationResult != BranchValidationResult.NoAccess));
+            return new ObservableCollection<MergeInfoViewModel>(result.Where(x => x.ValidationResult != BranchValidationResult.NoAccess && x.ValidationResult != BranchValidationResult.BranchNotMapped));
         }
 
         private static List<ItemIdentifier> GetMergesRelationships(string sourceTopFolder, VersionControlServer versionControl)
